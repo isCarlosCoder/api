@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta property="og:image" content="https://github.com/iscarloscoder.png">
+    <title>CarlosDlw - API | Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        if (localStorage.getItem("token")) {
+            window.location.href = "/docs";
+        }
+    </script>
+</head>
+<body>
+
+   <!-- Formularios -->
+    <div class="contenedor-formularios">
+        <!-- Links de los formularios -->
+        <ul class="contenedor-tabs">
+            <li class="tab tab-segunda active"><a href="#iniciar-sesion">Iniciar Sessão</a></li>
+            <li class="tab tab-primera"><a href="#registrarse">Registro</a></li>
+        </ul>
+
+        <!-- Contenido de los Formularios -->
+        <div class="contenido-tab">
+            <!-- Iniciar Sesion -->
+            <div id="iniciar-sesion">
+                <h1>Iniciar Sessão</h1>
+                <form action="#" method="post" id="logg">
+                    <div class="contenedor-input">
+                        <label>
+                            Email <span class="req">*</span>
+                        </label>
+                        <input type="text" required id="logmail">
+                    </div>
+
+                    <div class="contenedor-input">
+                        <label>
+                            Senha <span class="req">*</span>
+                        </label>
+                        <input type="password" required id="logpass">
+                    </div>
+                    <p class="forgot"><a href="javascript:void(0);" onclick="requestReset()">Você esqueceu sua senha?</a></p>
+                    <!--<p class="forgot"><a href="#" onclick="requestReset()">Se te olvidó la contraseña?</a></p> -->
+                    <input type="submit" class="button button-block" value="Iniciar Sessão">
+                </form>
+            </div>
+
+            <!-- Registrarse -->
+            <div id="registrarse">
+                <h1>Registro</h1>
+                <form action="#" method="post" id="regg">
+                    <div class="contenedor-input">
+                            <label>
+                                Email <span class="req">*</span>
+                            </label>
+                        <input type="email" required id="regmail">
+                    </div>
+                    <div class="contenedor-input">
+                        <label>
+                            Senha <span class="req">*</span>
+                        </label>
+                        <input type="password" required id="reggpass">
+                    </div>
+
+                    <div class="contenedor-input">
+                        <label>
+                            Repetir Senha <span class="req">*</span>
+                        </label>
+                        <input type="password" required id="reggpass2">
+                    </div>
+
+                    <input type="submit" class="button button-block" value="Registrar" id="submitButton">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Contenedor de Contacto -->
+    <div class="contenedor-contacto">
+        <div class="contacto-info">
+            <a href="https://wa.me/5521971519815" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/iscarloscoder" target="_blank"><i class="fab fa-github"></i></a>
+            <!-- <a href="https://www.paypal.com/paypalme/TheShadowBrokers133" target="_blank"><i class="fab fa-paypal"></i></a> -->
+        </div>
+    </div>        
+   <script>
+
+    async function requestReset() {
+      if (!logmail.value) {
+        alert("[❗] Digite seu e-mail");
+        return;
+      }
+                
+      if (window.recaptchaKey) {
+        grecaptcha.ready(function() {
+          grecaptcha.execute(window.recaptchaKey, {action: 'submit'}).then(function(token) {
+            fetch("/api/manageusers/requestReset", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                mail: logmail.value,
+                recaptchaVerify: token
+              })
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (!data.status) {
+                  alert(data.message);
+                } else {
+                  alert(data.message);
+                }
+              })
+              .catch(error => {
+                alert("[⚠️] Erro de registro, reporte o erro.");
+              });
+          });
+        });
+      } else {
+        fetch("/api/manageusers/requestReset", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            mail: logmail.value
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (!data.status) {
+              alert(data.message);
+            } else {
+              alert(data.message);
+            }
+          })
+          .catch(error => {
+            alert("[⚠️] Erro de registro, reporte o erro.");
+          });
+      }
+    }
+
+    regg.addEventListener("submit", function(event) {
+  event.preventDefault();
+  if (reggpass.value !== reggpass2.value) {
+    alert("[❗] As senhas não correspondem.");
+    return;
+  }
+
+  if (reggpass.value.length < 8) {
+    alert("[❗] A senha deve ter pelo menos 8 caracteres.");
+    return;
+  }        
+        
+  if (window.recaptchaKey) {
+
+  grecaptcha.ready(function() {
+          grecaptcha.execute(window.recaptchaKey, {action: 'submit'}).then(function(token) {
+              // Add your logic to submit to your backend server here.
+
+  fetch("/api/manageusers/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mail: regmail.value,
+      password: btoa(reggpass.value),
+      recaptchaVerify: token
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.status) {
+        alert(data.message);
+      } else if (reggpass.value.length < 8) {
+          alert("[❗] A senha deve conter pelo menos 8 caracteres.");
+          return;    
+      } else {
+        alert(data.message);
+        window.location.reload()
+      }
+    })
+    .catch(error => {
+      alert("[⚠️] Erro de registro, reporte o erro.");
+    });
+});
+});
+
+} else {
+  fetch("/api/manageusers/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mail: regmail.value,
+      password: btoa(reggpass.value)
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.status) {
+        alert(data.message);
+      } else {
+        alert("[❗] Usuário cadastrado com sucesso, verifique sua caixa de entrada ou spam em seu e-mail para validá-lo.");
+        window.location.reload()
+      }
+    })
+    .catch(error => {
+      alert("[⚠️] Erro de registro, reporte o erro.");
+    });
+    }
+
+        });
+logg.addEventListener("submit", function(event) {
+  event.preventDefault();
+    
+  fetch("/api/manageusers/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      mail: logmail.value,
+      password: btoa(logpass.value)
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.status) {
+        alert(data.message);
+      } else {
+        localStorage.setItem("token", data.token);
+        window.location.href = "/docs";
+      }
+    })
+    .catch(error => {
+      alert("[⚠️] Erro de login, relate o erro.");
+    });    
+});
+
+fetch("/api/manageusers/fetchRecaptcha").then(response => response.json()).then(data => {
+  if (!data.status) return;
+  window.recaptchaKey = data.sitekey;
+  let recap = document.createElement("script")
+  recap.src = "https://www.google.com/recaptcha/api.js?render=" + data.sitekey;
+  document.head.appendChild(recap);
+
+});
+   </script>
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script>
+    $(document).ready(function(){
+        $('.tab a').on('click', function (e) {
+            e.preventDefault();
+
+            $(this).parent().addClass('active');
+            $(this).parent().siblings().removeClass('active');
+
+            target = $(this).attr('href');
+
+            $('.contenido-tab > div').not(target).hide();
+
+            $(target).fadeIn(600);
+
+        });
+})
+   </script>
+   <script>
+    $(document).ready(function(){
+        $('.tab a').on('click', function (e) {
+            e.preventDefault();
+
+            $(this).parent().addClass('active');
+            $(this).parent().siblings().removeClass('active');
+
+            target = $(this).attr('href');
+
+            $('.contenido-tab > div').not(target).hide();
+
+            $(target).fadeIn(600);
+
+        });
+})
+   </script>
+
+</body>
+</html>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

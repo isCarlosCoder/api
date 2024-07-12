@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- icon animated -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta property="og:image" content="https://github.com/iscarloscoder.png">
+    <title>CarlosDlw - API</title>
+    <link href="https://BrunoSobrino.github.io/template-api/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://BrunoSobrino.github.io/template-api/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://BrunoSobrino.github.io/template-api/css/default.css" rel="stylesheet">
+    <link href="https://BrunoSobrino.github.io/template-api/css/style.css" rel="stylesheet">
+</head>
+<style>
+    h1 {
+        text-align: center;
+    }
+.text-container {
+    display: inline-flex;
+    align-items: center;
+}
+
+.fire-text {
+    font-size: 2.5em;
+    color: #ff5733;
+    text-shadow: 0 0 10px #ff5733, 0 0 20px #ff5733, 0 0 30px #ff5733; 
+    animation: burn 0.5s infinite alternate; 
+    display: inline-block;
+    white-space: nowrap; 
+}
+
+@keyframes burn {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+.fire-emoji {
+    font-size: 0.9em; 
+    color: #ff5733;
+}
+    .button-style {
+        background-color: rgba(0, 0, 128, 0.0); 
+        color: #fff; 
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        outline: none !important; 
+        border: 0; 
+    }
+    .button-style:active {
+        outline: none !important;
+        border: 0; 
+    }
+    .age-restriction-icon {
+        background-color: transparent;
+        color: white;
+        padding: 5px 0px;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: left;
+        white-space: nowrap;
+        margin-right: 5px
+    }
+
+    .scroll-mouse-enter {
+        max-height: 400px;
+        overflow-y: hidden;
+    }
+
+    .medium-scroll {
+        max-height: 300px;
+    }
+
+    .scroll-visible{
+        overflow-y: scroll;
+    }
+
+    .scroll-mouse-enter::-webkit-scrollbar {
+        width: 5px;
+    }
+
+
+    .scroll-mouse-enter::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+
+    .scroll-mouse-enter::-webkit-scrollbar-thumb {
+        background: #b9b8b837;
+        border-radius: 6px;
+    }
+
+
+    .scroll-mouse-enter::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    @media (max-width: 1024px) {
+        .scroll-mouse-enter{
+            overflow-y: scroll;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .age-restriction-icon {
+        padding: 5px 0; 
+        margin-left: 10px; 
+      }
+    }    
+        #info-box {
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            background-color: transparent;
+            padding: 10px;
+            text-align: center;
+            width: 60px; 
+            height: 60px; 
+        }
+        #corner-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; 
+            height: auto;
+        }
+        #powered-text {
+            font-size: 50%; 
+            color: #999; 
+        }
+</style>
+  <body id="page-top" class="dark-mode">
+    <div id="wrapper">
+        <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <img src="https://github.com/iscarloscoder.png" alt="carloscoder" width="48" height="48" style="border-radius: 50%;">
+    <div class="sidebar-brand-text mx-3" style="white-space: nowrap;">By CarlosDlw</div>
+</a>
+            <!--
+<audio autoplay loop>
+    <source src="musicDocs.mp3" type="audio/mpeg">
+    <source src="musicDocs.wav" type="audio/wav">
+</audio>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active"></li>
+            <hr class="sidebar-divider">
+            <button id="toggleButton" class="button-style">Pausar Música</button>
+           -->
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">Features</div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDownload" aria-expanded="true" aria-controls="collapseDownload">
+                    <i class="fa fa-fw fa-arrow-down"></i>
+                    <span>Dowloads</span>
+                </a>
+                <div id="collapseDownload" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter">
+                        <h6 class="collapse-header">YouTube</h6>
+                        <a class="collapse-item" target="_blank" href="/api/v1/ytmp3?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">MP3 - URL V1</a>
+                        <a class="collapse-item" target="_blank" href="/api/v2/ytmp3?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">MP3 - URL V2</a>
+                        <a class="collapse-item" target="_blank" href="/api/v1/ytmp4?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">MP4 - URL V1</a>
+                        <a class="collapse-item" target="_blank" href="/api/v2/ytmp4?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">MP4 - URL V2</a>
+                        <a class="collapse-item" target="_blank" href="/api/ytplay?text=teto paypal">Play - Texto</a>
+                        <a class="collapse-item" target="_blank" href="/api/ytplay?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">Play - URL</a>
+                        <a class="collapse-item" target="_blank" href="/api/ytinfo?url=https://www.youtube.com/watch%3Fv%3DDsdjqBfTpaI">YT Info - URL</a>
+                        <h6 class="collapse-header">Spotify</h6>
+                        <a class="collapse-item" target="_blank" href="/api/spotifydl?text=teto paypal">Track - Texto</a>
+                        <a class="collapse-item" target="_blank" href="/api/spotifydl?url=https://open.spotify.com/track/6x1FttETfbRLerumlTn0ZH">Track - URL</a>
+                        <a class="collapse-item" target="_blank" href="/api/spotifyinfo?text=teto paypal">InfoTrack - Texto</a>
+                        <a class="collapse-item" target="_blank" href="/api/spotifyinfo?url=https://open.spotify.com/track/6x1FttETfbRLerumlTn0ZH">InfoTrack - URL</a>
+                        <h6 class="collapse-header">Instagram</h6>
+                        <a class="collapse-item" target="_blank" href="/api/v1/igdl?url=https://www.instagram.com/reel/C7-Bi1GJnXZ/?igsh=emtwMmVrbjdzOTU4">Instagram - URL</a>
+                        <!-- <h6 class="collapse-header">Tiktok</h6>
+                        <a class="collapse-item" target="_blank" href="/api/ttimg?url=https://vm.tiktok.com/ZM6WcvHcP">Imagen - URL</a>
+                        <a class="collapse-item" target="_blank" href="/api/tiktokv2?url=https://vm.tiktok.com/ZM6Wcc2ag">Vídeo - URL</a>
+                        <a class="collapse-item" target="_blank" href="/api/tiktokv1?url=https://vm.tiktok.com/ZM6Wcc2ag">Imagen/Vídeo - URL</a>
+                        <h6 class="collapse-header">Facebook</h6>
+                        <a class="collapse-item" target="_blank" href="/api/facebook?url=https://fb.watch/fOTpgn6UFQ">Facebook - URL</a>
+                        <h6 class="collapse-header">XNXX</h6>
+                        <a class="collapse-item" target="_blank" href="/api/xnxxdl?url=https://www.xnxx.com/video-11qev1b8/estudiante_latina_se_da_unos_sentones_">XNXX - URL</a>
+                        <h6 class="collapse-header">X Twitter</h6>
+                        <a class="collapse-item" target="_blank" href="/api/twitterdl?url=https://twitter.com/auronplay/status/1586487664274206720?s=20&t=3snvkvwGUIez5iWYQAehpw">X_Twitter - URL</a> -->                                                
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="true" aria-controls="collapseSearch">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Buscadores</span>
+                </a>
+                <div id="collapseSearch" class="collapse" aria-labelledby="headingSearch" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded">
+                        <h6 class="collapse-header"> Searchs Features</h6>
+                        <a class="collapse-item" target="_blank" href="/api/ytsearch?text=teto paypal">YT Search</a>
+                        <a class="collapse-item" target="_blank" href="/api/spotifysearch?text=teto paypal">Spotify Search</a>
+                        <a class="collapse-item" target="_blank" href="/api/xnxxsearch?text=prima">XNXX Search</a>
+                        <a class="collapse-item" target="_blank" href="/api/stickersearch?text=flores">Stickers Search</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTools" aria-expanded="true" aria-controls="collapseTools">
+                    <i class="fas fa-fw fa-tools"></i>
+                    <span>Ferramentas</span>
+                </a>
+                <div id="collapseTools" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter">
+                        <h6 class="collapse-header">Tools Features</h6>
+                        <a class="collapse-item" target="_blank" href="/api/chatgpt?text=Olá&prompt=deve atuar como uma inteligente moça de 23 anos do interior de são paulo">ChatGPT</a>
+                        <a class="collapse-item" target="_blank" href="/api/tempmail/getmail">TempMail getMail</a>
+                        <a class="collapse-item" target="_blank" href="/api/tempmail/getmessages?mail=miusuario@ejemplo.com">TempMail getMessage</a>
+                        <a class="collapse-item" target="_blank" href="/api/lyrics?text=teto paypal">Lyrics</a>
+                        <a class="collapse-item" target="_blank" href="/api/googleImage?text=cavalos">GoogleImage</a>
+                        <a class="collapse-item" target="_blank" href="/api/ssweb?url=https://github.com/iscarloscoder">SSWEB</a>
+                        <a class="collapse-item" target="_blank" href="/api/igstalk?username=neymarjr">IG Stalk</a>
+                        <a class="collapse-item" target="_blank" href="/api/tiktokstalk?username=neymarjr">TikTok Stalk</a>
+                        <a class="collapse-item" target="_blank" href="/api/pinterest?text=mulheres">Pinterest</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNsfw" aria-expanded="true" aria-controls="collapseNsfw">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>NSFW</span>
+                </a>
+                <div id="collapseNsfw" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter">
+                        <h6 class="collapse-header">NSFW Random</h6>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwass">nsfwass</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwbdsm">nsfwbdsm</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwcum">nsfwcum</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwero">nsfwero</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwfemdom">nsfwfemdom</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwfoot">nsfwfoot</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwglass">nsfwglass</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwloli">nswfloli</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfworgy">nsfworgy</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/nsfwtrap">nsfwtrap</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/ecchi">ecchi</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/hentai">hentai</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/yuri">yuri</a>
+                        <a class="collapse-item" target="_blank" href="/api/nsfw/yaoi">yaoi</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse18plus" aria-expanded="true" aria-controls="collapse18plus">
+                    <span class="age-restriction-icon">+18</span>
+                    <span>Random +18</span>
+                </a>
+                <div id="collapse18plus" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter">
+                        <h6 class="collapse-header">+18 Random</h6>
+                        <a class="collapse-item" target="_blank" href="/api/adult/packgirl">Packs Girl</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/packmen">Packs Mens</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/gawrgura">Gawr Gura</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/booty">Booty</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/furro">Furro</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/imglesbian">IMG Lesbian</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/panties">Panties</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/pechos">Pechos</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/pene">Pene</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/porno">Porno</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/tetas">Tetas</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/videoxxx">Viedeo XXX</a>
+                        <a class="collapse-item" target="_blank" href="/api/adult/videoxxxlesbi">Viedeo XXX Lésbico</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapAnimes" aria-expanded="true" aria-controls="collapAnimes">
+                    <i class="fas fa-fw fa-tv"></i>
+                    <span>Random Anime</span>
+                </a>
+                <div id="collapAnimes" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter medium-scroll">
+                        <h6 class="collapse-header">Anime Random</h6>
+                        <a class="collapse-item" target="_blank" href="/api/anime/lolivid">loli video</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/loli">loli</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/waifu">waifu</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/cosplay">cosplay</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/akira">akira</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/akiyama">akiyama</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/anna">anna</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/asuna">asuna</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/ayuzawa">ayuzawa</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/boruto">boruto</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/chiho">chiho</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/chitoge">chitoge</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/deidara">deidara</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/eba">eba</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/elaina">elaina</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/emilia">emilia</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/erza">erza</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/hestia">hestia</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/hinata">hinata</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/inori">inori</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/isuzu">isuzu</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/itachi">itachi</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/itori">itori</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/kaga">kaga</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/kagura">kagura</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/kaori">kaori</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/keneki">keneki</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/kotori">kotori</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/kurumi">kurumi</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/madara">madara</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/mikasa">mikasa</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/miku">miku</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/minato">minato</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/naruto">naruto</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/nezuko">nezuko</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/sagiri">sagiri</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/sakura">sakura</a>
+                        <a class="collapse-item" target="_blank" href="/api/anime/sasuke">sasuke</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWallpaper" aria-expanded="true" aria-controls="collapseWallpaper">
+                    <i class="fas fa-fw fa-image"></i>
+                    <span>Wallpapers</span>
+                </a>
+                <div id="collapseWallpaper" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter medium-scroll">
+                        <h6 class="collapse-header">Wallpapers Random</h6>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/coffee">coffee</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/wprandom">wprandom</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/cristianoronaldo">Cristiano Ronaldo</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/messi">Messi</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/itzy">itzy</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/navidad">navidad</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/wpmountain">wpmountain</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/pubg">pubg</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/wpgaming">wpgaming</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/aesthetic">aesthetic</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/pentol">pentol</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/cartoon">cartoon</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/cyberspace">cyberspace</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/technology">technology</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/doraemon">doraemon</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/hacker">hacker</a>
+                        <a class="collapse-item" target="_blank" href="/api/wallpaper/planet">planet</a>
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMarker" aria-expanded="true" aria-controls="collapseMarker">
+                    <i class="fas fa-fw fa-paint-brush"></i>
+                    <span>Maker</span>
+                </a>
+                <div id="collapseMarker" class="collapse" aria-labelledby="headingSearch" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded scroll-mouse-enter medium-scroll">
+                        <h6 class="collapse-header">stickers</h6>
+                        <a class="collapse-item" target="_blank" href="/api/maker/attp?text=api%20emipire">Attp</a>  
+                        <h6 class="collapse-header">Canvas</h6>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/welcome?titulo=Bienvenido/a&username=Nombre%20del%20user&groupname=Nombre%20del%20grupo&profile=https://github.com/BrunoSobrino.png">Card Welcome</a>   
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/welcome2?username=Bruno%20Sobrino&groupname=API%20Empire%20-%20Comunidad&membercount=12&description=Bienvenido(a),%20lee%20las%20reglas%20del%20grupo&profile=https://github.com/BrunoSobrino.png">Card Welcome 2</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/welcome3?username=Bruno%20Sobrino&groupname=API%20Empire%20-%20Comunidad&membercount=12&description=Bienvenido(a),%20lee%20las%20reglas%20del%20grupo&profile=https://github.com/BrunoSobrino.png">Card Welcome 3</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/welcome4?username=Bruno%20Sobrino&groupname=API%20Empire%20-%20Comunidad&membercount=12&description=Bienvenido(a),%20lee%20las%20reglas%20del%20grupo&profile=https://github.com/BrunoSobrino.png">Card Welcome 4</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/welcome5?username=bruno&groupname=api%20empire&membercount=12&groupicon=https://telegra.ph/file/4cc51944c9130560fb4a9.jpg&profile=https://github.com/BrunoSobrino.png&background=https://telegra.ph/file/82d079999da723cc80899.png">Card Welcome 5</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/goodbye?username=bruno&groupname=api%20empire&membercount=12&memberdiscriminator=13&profile=https://github.com/BrunoSobrino.png&background=https://telegra.ph/file/82d079999da723cc80899.png">Card GoodBye 1</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/goodbye2?username=bruno&groupname=api%20empire&membercount=12&groupicon=https://telegra.ph/file/4cc51944c9130560fb4a9.jpg&profile=https://github.com/BrunoSobrino.png&background=https://telegra.ph/file/82d079999da723cc80899.png">Card GoodBye 2</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/goodbye3?username=Bruno&membercount=12&profile=https://github.com/BrunoSobrino.png&background=https://telegra.ph/file/82d079999da723cc80899.png">Card GoodBye 3</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/canvas/goodbye4?username=Bruno&profile=https://github.com/BrunoSobrino.png">Card GoodBye 4</a>                        
+                        <h6 class="collapse-header">textpro</h6>
+                        <a class="collapse-item" target="_blank" href="/api/maker/textpro/deep-sea-metal?text=api%20empire">Deep Sea Metal</a>
+                        <a class="collapse-item" target="_blank" href="/api/maker/textpro/wolf-logo-galaxy?text1=api%20empire&text2=by%20brunosobrino">Wolf Logo Galaxy</a>
+                        <h6 class="collapse-header">photooxy</h6>
+                        <a class="collapse-item" target="_blank" href="/api/maker/photooxy/flaming?text=api%20empire">Flaming text</a>
+                        <h6 class="collapse-header">ephoto360</h6>
+                        <a class="collapse-item" target="_blank" href="/api/maker/ephoto360/eraser-deleting-text?text=api%20empire">Eraser Deleting Text</a>
+                    </div>
+                </div>
+            </li> -->
+  <!-- <hr class="sidebar-divider"> -->
+<!-- <div class="sidebar-heading">MORE OPTIONS</div> -->
+<!-- <li class="nav-item">
+    <a class="nav-link" href="/human/youtube" target="_blank">
+        <i class="fab fa-fw fa-youtube"></i>
+        <span>YouTube</span>
+    </a>
+</li> -->
+<!-- <li class="nav-item">
+    <a class="nav-link" href="/human/instagram" target="_blank">
+        <i class="fab fa-fw fa-instagram"></i>
+        <span>Instagram</span>
+    </a>
+</li> -->
+<!--<li class="nav-item">
+    <a class="nav-link" href="/human/x" target="_blank">
+        <i class="fas fa-fw fa-times"></i>
+        <span>X (Twitter)</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/human/tiktok" target="_blank">
+        <i class="fas fa-fw fa-music"></i>
+        <span>TikTok</span>
+    </a>
+</li>-->
+<!-- <li class="nav-item">
+    <a class="nav-link" href="/human/facebook" target="_blank">
+        <i class="fab fa-fw fa-facebook"></i>
+        <span>Facebook</span>
+    </a>
+</li>   -->                
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">Contact</div>
+            <li class="nav-item">
+                <a class="nav-link" href="https://api.whatsapp.com/send/?phone=5521971519815&text=&type=phone_number&app_absent=0">
+                    <i class="fab fa-fw fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </li>
+           <!--  <li class="nav-item">
+                <a class="nav-link" href="https://www.paypal.com/paypalme/TheShadowBrokers133">
+                    <i class="fab fa-fw fa-paypal"></i>
+                    <span>PayPal</span>
+                </a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/iscarloscoder">
+                    <i class="fab fa-fw fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </li>            
+          <hr class="sidebar-divider">
+        </ul>
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- TopBar -->
+                <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>      
+            <div class="text-container">
+                <h1 class="my-4 fire-text">API <span class="fire-emoji">🔥</span></h1>
+            </div>                     
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="/" id="userDropdown" role="button" data-toggle="collapse" data-target="#dropdownProfile" aria-expanded="true" aria-controls="dropdownProfile">
+                                <i class="fa fa-user-circle fa-2x"></i>
+                                <span class="ml-2 d-none d-lg-inline small font-weight-bold" id="usermail">Usuario</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="dropdownProfile" class="collapse" aria-labelledby="headingSearch" data-parent="#accordionSidebar">
+                        <div class="py-2 collapse-inner rounded">
+                            <a class="collapse-item" onclick="cerrarSesion()" href="#">Fechar Sessão</a>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Topbar -->
+        <!-- Sidebar -->
+                <!-- Container Fluid-->
+                <div class="container-fluid" id="container-wrapper">
+                    <div class="card h-50 mb-4">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-md-left font-weight-bold mb-2 text-primary"> INFORMAÇÃO:</div>
+                                    <div class="card-body mb-3">
+                                        <ol>
+                                            <li>API em desenvolvimento.</li>
+                                            <li>API 100% gratuita.</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                <div class="col-auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <!-- Earnings (Annual) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">VISITANTES</div>
+                                            <div id="totalVisitors"></div>
+                                            <!-- div class="h5 mb-0 font-weight-bold"><%= totalVisitors %></div -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-user faa-ring animated fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Requests Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">SOLICITAÇÕES</div>
+                                            <div id="totalRequests"></div>
+                                            <!-- div class="h5 mb-0 font-weight-bold"><%= totalRequests %></div -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar faa-wrench animated fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Uptime web card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">TEMPO DE ATIVIDADE</div>
+                                            <div id="uptime"></div>
+                                            <!-- div class="h5 mb-0 font-weight-bold"><%= uptime %></div -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clock fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <!-- Widgets - Latencia -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">Latência Interna</div>
+                                            <div id="latencia"></div>
+                                            <!-- div class="h5 mb-0 font-weight-bold"><%= totalRequests %></div -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-bolt faa-wrench fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-uppercase mb-1">USOS RESTANTES</div>
+                                            <div id="totalUsos"></div>
+                                            <!-- div class="h5 mb-0 font-weight-bold"><%= totalRequests %></div -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-credit-card faa-wrench animated fa-2x text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div id="findipurl">
+                                <a href="find-ip.net"></a>
+                            </div>
+                            <script defer src="https://api.find-ip.net/widget.js?width=220&bg=%23152232&border=%230e1824&textcol=%23d3d5f3&language=0&system=0&"></script>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container Fluid -->
+            </div>
+    <!-- Footer -->
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <a href="#" target="_blank" style="color: #fff;">
+                    <img src="https://github.com/iscarloscoder.png" alt="Icone" style="width: 30px; height: 30px;">
+                    <span style="margin-left: 5px;">Powered By CarlosDlw</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+        </div>
+    </div>
+    <!-- Scroll to top -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+<script>
+    //fetch('/status').then(response => response.json()).then(data => {
+        //document.getElementById('totalRequests').textContent = data.totalRequests;
+        //document.getElementById('totalVisitors').textContent = data.totalVisitors;
+        //document.getElementById('uptime').textContent = data.uptime;
+     // });
+
+    function cerrarSesion() {
+        localStorage.removeItem('token');
+        window.location.reload()
+    }
+
+    function updateUptime() {
+        fetch('/status').then(response => response.json()).then(data => {
+            document.getElementById('totalRequests').textContent = data.totalRequests;
+            document.getElementById('totalVisitors').textContent = data.totalVisitors;
+            document.getElementById('uptime').textContent = data.uptime;
+            document.getElementById('latencia').textContent = data.latencia;
+        });
+    }
+    setInterval(updateUptime, 1000);
+    document.addEventListener("DOMContentLoaded", function () {
+        const audioElement = document.querySelector("audio");
+        const toggleButton = document.getElementById("toggleButton");
+        function toggleAudio() {
+            if (audioElement.paused) {
+                audioElement.play();
+                toggleButton.textContent = "Pausar Música";
+            } else {
+                audioElement.pause();
+                toggleButton.textContent = "Retomar música";
+            }
+        }
+        toggleButton.addEventListener("click", toggleAudio);
+    });
+
+    const elementToScroll = document.getElementsByClassName('scroll-mouse-enter')
+
+    const elementArray = Array.from(elementToScroll)
+
+    elementArray.forEach(element => {
+        element.addEventListener('mouseenter', e => {
+            e.target.classList.add('scroll-visible')
+        })
+    });
+
+    elementArray.forEach(element => {
+        element.addEventListener('mouseleave', e => {
+            e.target.classList.remove('scroll-visible')
+        })
+    })
+
+    if (localStorage.getItem('token')) {
+    fetch('/api/manageusers/user', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+    .then(response => response.json()).then(data => {
+        if (!data.status) {
+        document.getElementById('usermail').textContent = "Invitado";
+        document.getElementById('userDropdown').attributes.removeNamedItem('data-toggle');
+        document.getElementById('userDropdown').href = "/login.html";
+        localStorage.removeItem('token');
+        } else {
+        document.getElementById('usermail').textContent = data.user.mail.split('@')[0];
+        document.getElementById("totalUsos").textContent = data.CurrentLimit - data.user.uses
+        for (let item of document.getElementsByTagName("a")) {
+            if (item.href.includes("api")) {
+                if (!item.href.includes("?")) item.href = item.href + "?apikey=" + data.user.apikey
+                else {
+                    item.href = item.href + "&apikey=" + data.user.apikey
+                }
+    }
+}
+        }
+    })
+    } else {
+        document.getElementById('usermail').textContent = "Convidado";
+        document.getElementById('userDropdown').attributes.removeNamedItem('data-toggle');
+        document.getElementById('userDropdown').href = "/";
+
+    }
+</script>
+    <script src="https://BrunoSobrino.github.io/template-api/vendor/jquery/jquery.min.js"></script>
+    <script src="https://BrunoSobrino.github.io/template-api/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://BrunoSobrino.github.io/template-api/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://BrunoSobrino.github.io/template-api/js/ruang-admin.min.js"></script>
+</body>
+</html>

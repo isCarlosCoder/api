@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">   
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta property="og:image" content="https://github.com/BrunoSobrino.png">
+  <title>API | Redefinir senha</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="contenedor-formularios">
+    <div class="contenido-tab">
+      <div id="iniciar-sesion" style="display: block;">
+        <h1>Redefinir senha</h1>
+        <form action="#" method="post" id="logg">
+          <div class="contenedor-input">
+            <label>
+              Nova senha <span class="req">*</span>
+            </label>
+            <input type="password" required id="logmail" oninput="moveLabel('logmail')">  
+          </div>
+          <div class="contenedor-input">
+            <label>
+              Confirmar senha <span class="req">*</span>
+            </label>
+            <input type="password" required id="logpass_confirm" oninput="moveLabel('logpass_confirm')">    
+          </div>
+          <input type="submit" class="button button-block" value="Redefinir senha">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.tab a').on('click', function (e) {
+        e.preventDefault();
+
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+
+        target = $(this).attr('href');
+
+        $('.contenido-tab > div').not(target).hide();
+
+        $(target).fadeIn(600);
+      });
+
+      logg.addEventListener("submit", function(event) {
+        event.preventDefault();
+        if (logmail.value !== logpass_confirm.value) {
+          alert("Las contraseñas no coinciden");
+          return;
+        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('resetToken');
+        fetch("/api/manageusers/reset", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            tokenReset: myParam,
+            password: btoa(logmail.value)
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (!data.status) {
+              alert(data.message);
+            } else if (logmail.value.length < 8) {  
+                alert("[❗] A senha deve ter pelo menos 8 caracteres.");
+                return;                     
+            } else {
+              window.location.href = "/login.html";
+            }
+          })
+          .catch(error => {
+            alert("Error en el login");
+          });
+      });
+    });
+      
+    function moveLabel(inputId) {
+      const input = document.getElementById(inputId);
+      const label = input.previousElementSibling;
+      if (input.value.length > 0) {
+        label.style.transform = 'translateY(-20px)';
+        label.style.fontSize = '14px';
+        label.querySelector('.req').style.display = 'none';
+      } else {
+        label.style.transform = '';
+        label.style.fontSize = '';
+        label.querySelector('.req').style.display = 'inline';
+      }
+    }
+  </script>
+</body>
+</html>

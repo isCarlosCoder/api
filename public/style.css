@@ -1,0 +1,217 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('https://wallpapercave.com/wp/wp8981053.jpg');
+  background-color: #000033; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Ubuntu", sans-serif;
+  line-height: 1.6;
+  margin-top: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #00CCFF; 
+  transition: color 0.5s ease;
+}
+a:hover {
+  color: #CC00CC; 
+}
+
+.contenedor-contacto {
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 1px;
+  max-width: 600px;
+  margin: 10px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  border: 2px solid #00CCFF; 
+}
+
+.contenedor-contacto h2 {
+  margin-bottom: 20px;
+}
+
+.contacto-info {
+  display: flex;
+  justify-content: space-around; 
+}
+
+.contacto-info a:hover {
+  color: #CC00CC; 
+}
+
+.contenedor-contacto a {
+  color: #00CCFF; 
+  font-size: 2rem;
+}
+
+.contenedor-formularios {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  max-width: 600px;
+  margin: 10px auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
+  border: 2px solid #00CCFF;
+}
+
+.contenedor-tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.contenedor-tabs li a {
+  display: flex;
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center;  
+  text-decoration: none;
+  padding: 15px;
+  background: rgba(0, 204, 255, 0.25); /* Azul neón transparente */
+  color: #a0b3b0;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.5s ease;
+  height: 65px;
+  width: 100%; 
+}
+.contenedor-tabs li a:hover {
+  background: #CC00CC; /* Morado neón */
+  color: #fff;
+}
+.contenedor-tabs .active a {
+  background: #00CCFF; /* Azul neón */
+  color: #fff;
+}
+
+.contenido-tab > div:last-child {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
+
+label {
+  position: absolute;
+  transform: translateY(6px);
+  left: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.25s ease;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  font-size: 22px;
+}
+label .req {
+  margin: 2px;
+  color: #00CCFF; /* Azul neón */
+}
+
+label.active {
+  transform: translateY(50px);
+  left: 2px;
+  font-size: 14px;
+}
+label.active .req {
+  opacity: 0;
+}
+
+label.highlight {
+  color: #fff;
+}
+
+input {
+  font-size: 22px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  background: none;
+  background-image: none;
+  border: 1px solid #a0b3b0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #fff;
+  border-radius: 0;
+  transition: border-color 0.5s ease;
+  border-radius: 5px;
+}
+input:focus {
+  outline: none;
+  border-color: #00CCFF; /* Azul neón */
+}
+
+.contenedor-input {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.fila-arriba {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 15px 0;
+  font-size: 2rem;
+  background: #00CCFF; /* Azul neón */
+  color: #fff;
+  transition: background 0.5s ease;
+  -webkit-appearance: none;
+}
+.button:hover, .button:focus {
+  background: #CC00CC; /* Morado neón */
+}
+
+.button-block {
+  display: block;
+  width: 100%;
+}
+
+.forgot {
+  margin-top: -20px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .fila-arriba {
+    flex-direction: column;
+  }
+  h1, label, input, .button {
+    font-size: 18px;
+  }
+  .contenedor-tabs li a {
+    height: 95px; 
+  }
+}
+@media screen and (max-width: 400px) {
+  .contenedor-tabs li a {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    height: 100vh; 
+  }
+}
