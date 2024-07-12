@@ -26,43 +26,43 @@ const removeExtention = (filename) => {
 
 
 router.use(function (req, res, next) {
-  if (req.url.includes('manageusers')) return next()
-  const apiKey = req.query.apikey
-  //console.log(apiKey);
-  if (!apiKey) {
-    return res.status(401).json({ status: false, message: 'Uma chave de API não foi fornecida' })
-  }
-  let search = database.getDatabaseByApiKey(apiKey)
-  // if (!search) {
-  //   return res.status(401).json({ status: false, message: 'Chave de API inválida' })
+  // if (req.url.includes('manageusers')) return next()
+  // const apiKey = req.query.apikey
+  // //console.log(apiKey);
+  // if (!apiKey) {
+  //   return res.status(401).json({ status: false, message: 'Uma chave de API não foi fornecida' })
+  // }
+  // let search = database.getDatabaseByApiKey(apiKey)
+  // // if (!search) {
+  // //   return res.status(401).json({ status: false, message: 'Chave de API inválida' })
+  // // }
+
+  // if (search.isBanned) {
+  //   return res.status(401).json({ status: false, message: 'O usuário foi banido' })
   // }
 
-  if (search.isBanned) {
-    return res.status(401).json({ status: false, message: 'O usuário foi banido' })
-  }
+  // if (!search.isVerified) {
+  //   return res.status(401).json({ status: false, message: 'O usuário não verificou seu e-mail' })
+  // }
 
-  if (!search.isVerified) {
-    return res.status(401).json({ status: false, message: 'O usuário não verificou seu e-mail' })
-  }
-
-  if (!search.isPremium) {
-    // Comprobar si ya pasaron 24 horas
-    if (search.lastUsed < Date.now() - 86400000) {
-      search.lastUsed = Date.now()
-      search.uses = 0
-    }
-    if (search.uses >= Number(process.env.free_user_limit)) {
-      return res.status(401).json({ status: false, message: 'Limite de uso diário atingido. Volte amanhã' })
-    }
-  } else {
-    if (search.lastUsed < Date.now() - 86400000) {
-      search.lastUsed = Date.now()
-      search.uses = 0
-    }
-    if (search.uses >= Number(process.env.premium_user_limit)) {
-      return res.status(401).json({ status: false, message: 'Limite de uso diário atingido. Volte amanhã' })
-    }
-  }
+  // if (!search.isPremium) {
+  //   // Comprobar si ya pasaron 24 horas
+  //   if (search.lastUsed < Date.now() - 86400000) {
+  //     search.lastUsed = Date.now()
+  //     search.uses = 0
+  //   }
+  //   if (search.uses >= Number(process.env.free_user_limit)) {
+  //     return res.status(401).json({ status: false, message: 'Limite de uso diário atingido. Volte amanhã' })
+  //   }
+  // } else {
+  //   if (search.lastUsed < Date.now() - 86400000) {
+  //     search.lastUsed = Date.now()
+  //     search.uses = 0
+  //   }
+  //   if (search.uses >= Number(process.env.premium_user_limit)) {
+  //     return res.status(401).json({ status: false, message: 'Limite de uso diário atingido. Volte amanhã' })
+  //   }
+  // }
 
   database.addUse(search.mail)
 
