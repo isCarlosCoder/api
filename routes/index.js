@@ -33,9 +33,9 @@ router.use(function (req, res, next) {
     return res.status(401).json({ status: false, message: 'Uma chave de API não foi fornecida' })
   }
   let search = database.getDatabaseByApiKey(apiKey)
-  if (!search) {
-    return res.status(401).json({ status: false, message: 'Chave de API inválida' })
-  }
+  // if (!search) {
+  //   return res.status(401).json({ status: false, message: 'Chave de API inválida' })
+  // }
 
   if (search.isBanned) {
     return res.status(401).json({ status: false, message: 'O usuário foi banido' })
