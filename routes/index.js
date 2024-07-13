@@ -64,7 +64,7 @@ router.use(function (req, res, next) {
   //   }
   // }
 
-  database.addUse(search.mail)
+  // database.addUse(search.mail)
 
   next();
 });
